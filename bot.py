@@ -9,7 +9,7 @@ import os
 
 TOKEN = "8892438224:AAFWTg46NHeirJyf63OV7YV2hlyeAPrtiA0"
 
-API_URL = "http://127.0.0.1:8000/code/"
+API_URL = "https://auto-helper-bot-nhn.onrender.com/code/"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
