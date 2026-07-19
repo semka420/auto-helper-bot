@@ -1,15 +1,12 @@
 from fastapi import FastAPI
 import psycopg2
+import os
 from psycopg2.extras import RealDictCursor
 
 app = FastAPI()
 
-conn = psycopg2.connect(
-    host="localhost",
-    database="auto_helper",
-    user="postgres",
-    password="1234"
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 @app.get("/code/{code}")
 def get_error(code: str):

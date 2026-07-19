@@ -5,6 +5,7 @@ import aiohttp
 from aiogram.types import FSInputFile 
 import psycopg2
 from psycopg2.extras import RealDictCursor
+import os
 
 TOKEN = "8892438224:AAFWTg46NHeirJyf63OV7YV2hlyeAPrtiA0"
 
@@ -13,12 +14,8 @@ API_URL = "http://127.0.0.1:8000/code/"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-DB_CONN = psycopg2.connect(
-    host="localhost",
-    database="auto_helper",
-    user="postgres",
-    password="1234"
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+DB_CONN = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 @dp.message(Command("start"))
 async def start_command(message: types.Message):
